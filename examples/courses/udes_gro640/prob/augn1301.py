@@ -406,12 +406,12 @@ def r2q( r, dr, ddr , manipulator ):
     dJ = np.zeros((n,n))
     
     # Condition initial pour le solver
-    q[:,0] = np.array([0, (23/60)*np.pi, -(7/36)*np.pi])
+    q[:,0] = np.array([0, 1.25, -0.69])
     dq[:,0] = np.array([0, 0, 0])
     
     for i in range(l-1):
         # Resolution cinemtaique inverse
-        q[:,i+1] = fsolve(sys_equ, q[:,i], args = (r[:,i+1], manipulator), )
+        q[:,i+1] = fsolve(sys_equ, q[:,i], args = (r[:,i+1], manipulator))
         
         # Calcul matrice Jacobienne
         J = manipulator.J(q[:,i+1])
